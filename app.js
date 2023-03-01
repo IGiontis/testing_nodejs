@@ -4,6 +4,10 @@ const request = require("request");
 const app = express();
 const https = require("https");
 
+require("dotenv").config();
+console.log(process.env.API_KEY);
+console.log(process.env.LIST_ID);
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -34,10 +38,10 @@ app.post("/", function (req, res) {
   });
 
   const jsonData = JSON.stringify(data);
-  const url = `https://us17.api.mailchimp.com/3.0/lists/f7328523f5`;
+  const url = `https://us17.api.mailchimp.com/3.0/lists/${process.env.LIST_ID}`;
   const options = {
     method: "POST",
-    auth: "ilias:f3543a4a3e29e79b5068cffce68f813f-us17",
+    auth: `ilias:${process.env.API_KEY}`,
   };
 
   const request = https.request(url, options, function (response) {
@@ -61,9 +65,3 @@ app.post("/", function (req, res) {
 app.listen(process.env.PORT || 3000, function () {
   console.log("listening on port 3000");
 });
-
-// API
-// f3543a4a3e29e79b5068cffce68f813f-us17
-
-// List id
-// f7328523f5
