@@ -5,6 +5,8 @@ const app = express();
 const https = require("https");
 
 require("dotenv").config();
+const API_KEY = process.env.API_KEY;
+const LIST_ID = process.env.LIST_ID;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,10 +38,10 @@ app.post("/", function (req, res) {
   });
 
   const jsonData = JSON.stringify(data);
-  const url = `https://us17.api.mailchimp.com/3.0/lists/${process.env.LIST_ID}`;
+  const url = `https://us17.api.mailchimp.com/3.0/lists/${LIST_ID}}`;
   const options = {
     method: "POST",
-    auth: `ilias:${process.env.API_KEY}`,
+    auth: `ilias:${API_KEY}`,
   };
 
   const request = https.request(url, options, function (response) {
@@ -62,5 +64,5 @@ app.post("/", function (req, res) {
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("listening on port 3000");
-  console.log(`${process.env.LIST_ID}`);
+  console.log(API_KEY);
 });
