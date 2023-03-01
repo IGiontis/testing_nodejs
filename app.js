@@ -5,8 +5,6 @@ const app = express();
 const https = require("https");
 
 require("dotenv").config();
-console.log(process.env.API_KEY);
-console.log(process.env.LIST_ID);
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
