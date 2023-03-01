@@ -51,17 +51,11 @@ app.post("/", function (req, res) {
       res.sendFile(__dirname + "/failure.html");
     }
 
-    response.on("data", function (data) {
-      console.log(JSON.parse(data));
-    });
+    response.on("data", function (data) {});
   });
 
   request.write(jsonData);
   request.end();
-
-  console.log(`${firstName} ${lastName} ${email}`);
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("listening on port 3000");
-});
+app.listen(process.env.PORT || 3000, function () {});
